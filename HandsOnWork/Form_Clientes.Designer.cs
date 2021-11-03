@@ -31,6 +31,7 @@ namespace HandsOnWork
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Clientes));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbl_ID = new System.Windows.Forms.Label();
             this.btn_Excluir = new System.Windows.Forms.Button();
             this.btn_Editar = new System.Windows.Forms.Button();
             this.btn_Salvar = new System.Windows.Forms.Button();
@@ -43,17 +44,24 @@ namespace HandsOnWork
             this.lbl_CPF = new System.Windows.Forms.Label();
             this.lbl_Nome = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btn_Fechar = new System.Windows.Forms.Button();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.col_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_Conta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_Fechar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.textBox5);
+            this.panel1.Controls.Add(this.lbl_ID);
             this.panel1.Controls.Add(this.btn_Excluir);
             this.panel1.Controls.Add(this.btn_Editar);
             this.panel1.Controls.Add(this.btn_Salvar);
@@ -65,14 +73,23 @@ namespace HandsOnWork
             this.panel1.Controls.Add(this.lbl_Email);
             this.panel1.Controls.Add(this.lbl_CPF);
             this.panel1.Controls.Add(this.lbl_Nome);
-            this.panel1.Location = new System.Drawing.Point(39, 34);
+            this.panel1.Location = new System.Drawing.Point(39, 29);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(614, 138);
+            this.panel1.Size = new System.Drawing.Size(614, 167);
             this.panel1.TabIndex = 0;
+            // 
+            // lbl_ID
+            // 
+            this.lbl_ID.AutoSize = true;
+            this.lbl_ID.Location = new System.Drawing.Point(21, 27);
+            this.lbl_ID.Name = "lbl_ID";
+            this.lbl_ID.Size = new System.Drawing.Size(21, 13);
+            this.lbl_ID.TabIndex = 11;
+            this.lbl_ID.Text = "ID:";
             // 
             // btn_Excluir
             // 
-            this.btn_Excluir.Location = new System.Drawing.Point(512, 93);
+            this.btn_Excluir.Location = new System.Drawing.Point(494, 109);
             this.btn_Excluir.Name = "btn_Excluir";
             this.btn_Excluir.Size = new System.Drawing.Size(75, 23);
             this.btn_Excluir.TabIndex = 10;
@@ -81,7 +98,7 @@ namespace HandsOnWork
             // 
             // btn_Editar
             // 
-            this.btn_Editar.Location = new System.Drawing.Point(512, 58);
+            this.btn_Editar.Location = new System.Drawing.Point(494, 74);
             this.btn_Editar.Name = "btn_Editar";
             this.btn_Editar.Size = new System.Drawing.Size(75, 23);
             this.btn_Editar.TabIndex = 9;
@@ -90,7 +107,7 @@ namespace HandsOnWork
             // 
             // btn_Salvar
             // 
-            this.btn_Salvar.Location = new System.Drawing.Point(512, 20);
+            this.btn_Salvar.Location = new System.Drawing.Point(494, 36);
             this.btn_Salvar.Name = "btn_Salvar";
             this.btn_Salvar.Size = new System.Drawing.Size(75, 26);
             this.btn_Salvar.TabIndex = 8;
@@ -99,28 +116,28 @@ namespace HandsOnWork
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(81, 98);
+            this.textBox4.Location = new System.Drawing.Point(79, 124);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(363, 20);
             this.textBox4.TabIndex = 7;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(81, 72);
+            this.textBox3.Location = new System.Drawing.Point(79, 99);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(363, 20);
             this.textBox3.TabIndex = 6;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(81, 46);
+            this.textBox2.Location = new System.Drawing.Point(79, 74);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(363, 20);
             this.textBox2.TabIndex = 5;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(81, 20);
+            this.textBox1.Location = new System.Drawing.Point(79, 49);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(363, 20);
             this.textBox1.TabIndex = 4;
@@ -128,7 +145,7 @@ namespace HandsOnWork
             // lbl_Conta
             // 
             this.lbl_Conta.AutoSize = true;
-            this.lbl_Conta.Location = new System.Drawing.Point(23, 98);
+            this.lbl_Conta.Location = new System.Drawing.Point(21, 127);
             this.lbl_Conta.Name = "lbl_Conta";
             this.lbl_Conta.Size = new System.Drawing.Size(38, 13);
             this.lbl_Conta.TabIndex = 3;
@@ -137,7 +154,7 @@ namespace HandsOnWork
             // lbl_Email
             // 
             this.lbl_Email.AutoSize = true;
-            this.lbl_Email.Location = new System.Drawing.Point(23, 73);
+            this.lbl_Email.Location = new System.Drawing.Point(21, 102);
             this.lbl_Email.Name = "lbl_Email";
             this.lbl_Email.Size = new System.Drawing.Size(38, 13);
             this.lbl_Email.TabIndex = 2;
@@ -146,7 +163,7 @@ namespace HandsOnWork
             // lbl_CPF
             // 
             this.lbl_CPF.AutoSize = true;
-            this.lbl_CPF.Location = new System.Drawing.Point(23, 48);
+            this.lbl_CPF.Location = new System.Drawing.Point(21, 77);
             this.lbl_CPF.Name = "lbl_CPF";
             this.lbl_CPF.Size = new System.Drawing.Size(30, 13);
             this.lbl_CPF.TabIndex = 1;
@@ -155,7 +172,7 @@ namespace HandsOnWork
             // lbl_Nome
             // 
             this.lbl_Nome.AutoSize = true;
-            this.lbl_Nome.Location = new System.Drawing.Point(23, 23);
+            this.lbl_Nome.Location = new System.Drawing.Point(21, 52);
             this.lbl_Nome.Name = "lbl_Nome";
             this.lbl_Nome.Size = new System.Drawing.Size(38, 13);
             this.lbl_Nome.TabIndex = 0;
@@ -165,14 +182,38 @@ namespace HandsOnWork
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.col_ID,
             this.cl_Nome,
             this.cl_CPF,
             this.cl_Email,
             this.cl_Conta});
-            this.dataGridView1.Location = new System.Drawing.Point(39, 201);
+            this.dataGridView1.Location = new System.Drawing.Point(39, 212);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(614, 216);
             this.dataGridView1.TabIndex = 1;
+            // 
+            // btn_Fechar
+            // 
+            this.btn_Fechar.Location = new System.Drawing.Point(551, 444);
+            this.btn_Fechar.Name = "btn_Fechar";
+            this.btn_Fechar.Size = new System.Drawing.Size(75, 23);
+            this.btn_Fechar.TabIndex = 2;
+            this.btn_Fechar.Text = "Fechar";
+            this.btn_Fechar.UseVisualStyleBackColor = true;
+            this.btn_Fechar.Click += new System.EventHandler(this.btn_Fechar_Click);
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(79, 24);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(46, 20);
+            this.textBox5.TabIndex = 12;
+            // 
+            // col_ID
+            // 
+            this.col_ID.HeaderText = "Id";
+            this.col_ID.Name = "col_ID";
+            this.col_ID.Width = 50;
             // 
             // cl_Nome
             // 
@@ -198,21 +239,11 @@ namespace HandsOnWork
             this.cl_Conta.HeaderText = "Conta";
             this.cl_Conta.Name = "cl_Conta";
             // 
-            // btn_Fechar
-            // 
-            this.btn_Fechar.Location = new System.Drawing.Point(551, 444);
-            this.btn_Fechar.Name = "btn_Fechar";
-            this.btn_Fechar.Size = new System.Drawing.Size(75, 23);
-            this.btn_Fechar.TabIndex = 2;
-            this.btn_Fechar.Text = "Fechar";
-            this.btn_Fechar.UseVisualStyleBackColor = true;
-            this.btn_Fechar.Click += new System.EventHandler(this.btn_Fechar_Click);
-            // 
             // Form_Clientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(694, 495);
+            this.ClientSize = new System.Drawing.Size(693, 495);
             this.Controls.Add(this.btn_Fechar);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
@@ -244,10 +275,13 @@ namespace HandsOnWork
         private System.Windows.Forms.Label lbl_CPF;
         private System.Windows.Forms.Label lbl_Nome;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btn_Fechar;
+        private System.Windows.Forms.Label lbl_ID;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_CPF;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Conta;
-        private System.Windows.Forms.Button btn_Fechar;
     }
 }
