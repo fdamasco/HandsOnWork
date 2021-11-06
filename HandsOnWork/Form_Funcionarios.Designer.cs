@@ -52,6 +52,7 @@ namespace HandsOnWork
             this.cl_Cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_Fechar = new System.Windows.Forms.Button();
             this.btn_Limpar = new System.Windows.Forms.Button();
+            this.btn_Listar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -61,6 +62,7 @@ namespace HandsOnWork
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.btn_Listar);
             this.panel1.Controls.Add(this.textBox5);
             this.panel1.Controls.Add(this.lbl_ID);
             this.panel1.Controls.Add(this.btn_Excluir);
@@ -97,7 +99,7 @@ namespace HandsOnWork
             // 
             // btn_Excluir
             // 
-            this.btn_Excluir.Location = new System.Drawing.Point(494, 109);
+            this.btn_Excluir.Location = new System.Drawing.Point(492, 89);
             this.btn_Excluir.Name = "btn_Excluir";
             this.btn_Excluir.Size = new System.Drawing.Size(75, 23);
             this.btn_Excluir.TabIndex = 10;
@@ -106,7 +108,7 @@ namespace HandsOnWork
             // 
             // btn_Editar
             // 
-            this.btn_Editar.Location = new System.Drawing.Point(494, 74);
+            this.btn_Editar.Location = new System.Drawing.Point(492, 56);
             this.btn_Editar.Name = "btn_Editar";
             this.btn_Editar.Size = new System.Drawing.Size(75, 23);
             this.btn_Editar.TabIndex = 9;
@@ -115,7 +117,7 @@ namespace HandsOnWork
             // 
             // btn_Salvar
             // 
-            this.btn_Salvar.Location = new System.Drawing.Point(494, 36);
+            this.btn_Salvar.Location = new System.Drawing.Point(492, 20);
             this.btn_Salvar.Name = "btn_Salvar";
             this.btn_Salvar.Size = new System.Drawing.Size(75, 26);
             this.btn_Salvar.TabIndex = 8;
@@ -249,6 +251,15 @@ namespace HandsOnWork
             this.btn_Limpar.Text = "Limpar";
             this.btn_Limpar.UseVisualStyleBackColor = true;
             // 
+            // btn_Listar
+            // 
+            this.btn_Listar.Location = new System.Drawing.Point(492, 122);
+            this.btn_Listar.Name = "btn_Listar";
+            this.btn_Listar.Size = new System.Drawing.Size(75, 26);
+            this.btn_Listar.TabIndex = 13;
+            this.btn_Listar.Text = "Listar";
+            this.btn_Listar.UseVisualStyleBackColor = true;
+            // 
             // Form_Funcionarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -295,5 +306,6 @@ namespace HandsOnWork
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Cargo;
         private System.Windows.Forms.Button btn_Limpar;
+        private System.Windows.Forms.Button btn_Listar;
     }
 }
