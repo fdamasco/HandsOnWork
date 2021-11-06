@@ -51,6 +51,7 @@ namespace HandsOnWork
             this.cl_Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_Cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_Fechar = new System.Windows.Forms.Button();
+            this.btn_Limpar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -83,7 +84,7 @@ namespace HandsOnWork
             this.textBox5.Location = new System.Drawing.Point(79, 24);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(46, 20);
-            this.textBox5.TabIndex = 12;
+            this.textBox5.TabIndex = 1;
             // 
             // lbl_ID
             // 
@@ -126,28 +127,28 @@ namespace HandsOnWork
             this.textBox4.Location = new System.Drawing.Point(79, 124);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(363, 20);
-            this.textBox4.TabIndex = 7;
+            this.textBox4.TabIndex = 5;
             // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(79, 99);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(363, 20);
-            this.textBox3.TabIndex = 6;
+            this.textBox3.TabIndex = 4;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(79, 74);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(363, 20);
-            this.textBox2.TabIndex = 5;
+            this.textBox2.TabIndex = 3;
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(79, 49);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(363, 20);
-            this.textBox1.TabIndex = 4;
+            this.textBox1.TabIndex = 2;
             // 
             // lbl_Cargo
             // 
@@ -239,11 +240,21 @@ namespace HandsOnWork
             this.btn_Fechar.UseVisualStyleBackColor = true;
             this.btn_Fechar.Click += new System.EventHandler(this.btn_Fechar_Click);
             // 
+            // btn_Limpar
+            // 
+            this.btn_Limpar.Location = new System.Drawing.Point(459, 444);
+            this.btn_Limpar.Name = "btn_Limpar";
+            this.btn_Limpar.Size = new System.Drawing.Size(75, 23);
+            this.btn_Limpar.TabIndex = 4;
+            this.btn_Limpar.Text = "Limpar";
+            this.btn_Limpar.UseVisualStyleBackColor = true;
+            // 
             // Form_Funcionarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(693, 495);
+            this.Controls.Add(this.btn_Limpar);
             this.Controls.Add(this.btn_Fechar);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
@@ -283,5 +294,6 @@ namespace HandsOnWork
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_CPF;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Cargo;
+        private System.Windows.Forms.Button btn_Limpar;
     }
 }

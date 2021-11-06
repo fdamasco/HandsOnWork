@@ -31,26 +31,27 @@ namespace HandsOnWork
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Clientes));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txt_ID = new System.Windows.Forms.TextBox();
             this.lbl_ID = new System.Windows.Forms.Label();
             this.btn_Excluir = new System.Windows.Forms.Button();
             this.btn_Editar = new System.Windows.Forms.Button();
             this.btn_Salvar = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_Conta = new System.Windows.Forms.TextBox();
+            this.txt_Email = new System.Windows.Forms.TextBox();
+            this.txt_Cpf = new System.Windows.Forms.TextBox();
+            this.txt_Nome = new System.Windows.Forms.TextBox();
             this.lbl_Conta = new System.Windows.Forms.Label();
             this.lbl_Email = new System.Windows.Forms.Label();
             this.lbl_CPF = new System.Windows.Forms.Label();
             this.lbl_Nome = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btn_Fechar = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.col_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_Conta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_Fechar = new System.Windows.Forms.Button();
+            this.btn_Limpar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -60,15 +61,15 @@ namespace HandsOnWork
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.textBox5);
+            this.panel1.Controls.Add(this.txt_ID);
             this.panel1.Controls.Add(this.lbl_ID);
             this.panel1.Controls.Add(this.btn_Excluir);
             this.panel1.Controls.Add(this.btn_Editar);
             this.panel1.Controls.Add(this.btn_Salvar);
-            this.panel1.Controls.Add(this.textBox4);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.txt_Conta);
+            this.panel1.Controls.Add(this.txt_Email);
+            this.panel1.Controls.Add(this.txt_Cpf);
+            this.panel1.Controls.Add(this.txt_Nome);
             this.panel1.Controls.Add(this.lbl_Conta);
             this.panel1.Controls.Add(this.lbl_Email);
             this.panel1.Controls.Add(this.lbl_CPF);
@@ -77,6 +78,13 @@ namespace HandsOnWork
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(614, 167);
             this.panel1.TabIndex = 0;
+            // 
+            // txt_ID
+            // 
+            this.txt_ID.Location = new System.Drawing.Point(79, 24);
+            this.txt_ID.Name = "txt_ID";
+            this.txt_ID.Size = new System.Drawing.Size(46, 20);
+            this.txt_ID.TabIndex = 1;
             // 
             // lbl_ID
             // 
@@ -95,6 +103,7 @@ namespace HandsOnWork
             this.btn_Excluir.TabIndex = 10;
             this.btn_Excluir.Text = "Excluir";
             this.btn_Excluir.UseVisualStyleBackColor = true;
+            this.btn_Excluir.Click += new System.EventHandler(this.btn_Excluir_Click);
             // 
             // btn_Editar
             // 
@@ -104,6 +113,7 @@ namespace HandsOnWork
             this.btn_Editar.TabIndex = 9;
             this.btn_Editar.Text = "Editar";
             this.btn_Editar.UseVisualStyleBackColor = true;
+            this.btn_Editar.Click += new System.EventHandler(this.btn_Editar_Click);
             // 
             // btn_Salvar
             // 
@@ -113,34 +123,35 @@ namespace HandsOnWork
             this.btn_Salvar.TabIndex = 8;
             this.btn_Salvar.Text = "Salvar";
             this.btn_Salvar.UseVisualStyleBackColor = true;
+            this.btn_Salvar.Click += new System.EventHandler(this.btn_Salvar_Click);
             // 
-            // textBox4
+            // txt_Conta
             // 
-            this.textBox4.Location = new System.Drawing.Point(79, 124);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(363, 20);
-            this.textBox4.TabIndex = 7;
+            this.txt_Conta.Location = new System.Drawing.Point(79, 124);
+            this.txt_Conta.Name = "txt_Conta";
+            this.txt_Conta.Size = new System.Drawing.Size(363, 20);
+            this.txt_Conta.TabIndex = 5;
             // 
-            // textBox3
+            // txt_Email
             // 
-            this.textBox3.Location = new System.Drawing.Point(79, 99);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(363, 20);
-            this.textBox3.TabIndex = 6;
+            this.txt_Email.Location = new System.Drawing.Point(79, 99);
+            this.txt_Email.Name = "txt_Email";
+            this.txt_Email.Size = new System.Drawing.Size(363, 20);
+            this.txt_Email.TabIndex = 4;
             // 
-            // textBox2
+            // txt_Cpf
             // 
-            this.textBox2.Location = new System.Drawing.Point(79, 74);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(363, 20);
-            this.textBox2.TabIndex = 5;
+            this.txt_Cpf.Location = new System.Drawing.Point(79, 74);
+            this.txt_Cpf.Name = "txt_Cpf";
+            this.txt_Cpf.Size = new System.Drawing.Size(363, 20);
+            this.txt_Cpf.TabIndex = 3;
             // 
-            // textBox1
+            // txt_Nome
             // 
-            this.textBox1.Location = new System.Drawing.Point(79, 49);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(363, 20);
-            this.textBox1.TabIndex = 4;
+            this.txt_Nome.Location = new System.Drawing.Point(79, 49);
+            this.txt_Nome.Name = "txt_Nome";
+            this.txt_Nome.Size = new System.Drawing.Size(363, 20);
+            this.txt_Nome.TabIndex = 2;
             // 
             // lbl_Conta
             // 
@@ -192,23 +203,6 @@ namespace HandsOnWork
             this.dataGridView1.Size = new System.Drawing.Size(614, 216);
             this.dataGridView1.TabIndex = 1;
             // 
-            // btn_Fechar
-            // 
-            this.btn_Fechar.Location = new System.Drawing.Point(551, 444);
-            this.btn_Fechar.Name = "btn_Fechar";
-            this.btn_Fechar.Size = new System.Drawing.Size(75, 23);
-            this.btn_Fechar.TabIndex = 2;
-            this.btn_Fechar.Text = "Fechar";
-            this.btn_Fechar.UseVisualStyleBackColor = true;
-            this.btn_Fechar.Click += new System.EventHandler(this.btn_Fechar_Click);
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(79, 24);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(46, 20);
-            this.textBox5.TabIndex = 12;
-            // 
             // col_ID
             // 
             this.col_ID.HeaderText = "Id";
@@ -239,11 +233,31 @@ namespace HandsOnWork
             this.cl_Conta.HeaderText = "Conta";
             this.cl_Conta.Name = "cl_Conta";
             // 
+            // btn_Fechar
+            // 
+            this.btn_Fechar.Location = new System.Drawing.Point(551, 444);
+            this.btn_Fechar.Name = "btn_Fechar";
+            this.btn_Fechar.Size = new System.Drawing.Size(75, 23);
+            this.btn_Fechar.TabIndex = 2;
+            this.btn_Fechar.Text = "Fechar";
+            this.btn_Fechar.UseVisualStyleBackColor = true;
+            this.btn_Fechar.Click += new System.EventHandler(this.btn_Fechar_Click);
+            // 
+            // btn_Limpar
+            // 
+            this.btn_Limpar.Location = new System.Drawing.Point(459, 444);
+            this.btn_Limpar.Name = "btn_Limpar";
+            this.btn_Limpar.Size = new System.Drawing.Size(75, 23);
+            this.btn_Limpar.TabIndex = 3;
+            this.btn_Limpar.Text = "Limpar";
+            this.btn_Limpar.UseVisualStyleBackColor = true;
+            // 
             // Form_Clientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(693, 495);
+            this.Controls.Add(this.btn_Limpar);
             this.Controls.Add(this.btn_Fechar);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
@@ -266,10 +280,10 @@ namespace HandsOnWork
         private System.Windows.Forms.Button btn_Excluir;
         private System.Windows.Forms.Button btn_Editar;
         private System.Windows.Forms.Button btn_Salvar;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_Conta;
+        private System.Windows.Forms.TextBox txt_Email;
+        private System.Windows.Forms.TextBox txt_Cpf;
+        private System.Windows.Forms.TextBox txt_Nome;
         private System.Windows.Forms.Label lbl_Conta;
         private System.Windows.Forms.Label lbl_Email;
         private System.Windows.Forms.Label lbl_CPF;
@@ -277,11 +291,12 @@ namespace HandsOnWork
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btn_Fechar;
         private System.Windows.Forms.Label lbl_ID;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txt_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_CPF;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Conta;
+        private System.Windows.Forms.Button btn_Limpar;
     }
 }

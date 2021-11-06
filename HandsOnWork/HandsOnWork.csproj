@@ -33,7 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -113,6 +115,12 @@
     <None Include="Resources\1256650.png" />
     <None Include="Resources\1256650.ico" />
     <None Include="Resources\Imagens.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HandsOnWorkBiblioteca\HandsOnWorkBiblioteca.csproj">
+      <Project>{58a6d59e-e972-469a-a2b2-967643343f61}</Project>
+      <Name>HandsOnWorkBiblioteca</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
