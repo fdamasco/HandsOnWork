@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 
 //Biblioteca destinada às regras de negócio
@@ -15,7 +16,7 @@ namespace HandsOnWorkBiblioteca
         public class Unit
         {
             
-            public int Id { get; set; }
+            public string Id { get; set; }
 
             [Required(ErrorMessage = "Campo 'Nome' é obrigatório!")]
             public string Nome { get; set; }
@@ -52,12 +53,25 @@ namespace HandsOnWorkBiblioteca
                 }
             }
             //Subclasse que representa uma lista de Clientes
-            public class List
-            {
-                //A lista de clientes é um conjuntod de Clientes.Unit
-                public List<Unit> ListUnit { get; set; }
-            }
+           
         }
 
+        //A lista de clientes é um conjunto de Clientes.Unit
+        public class List
+        {
+            
+            public List<Unit> ListUnit { get; set; }
+        }
+
+        public static string SerializedClassUnit(Unit unit)
+        {
+            return JsonConvert.SerializeObject(unit);
+        }
+
+        //Método para transformar string em Json
+        public static Unit DesSerializedClassUnit(string vJson)
+        {
+            return JsonConvert.DeserializeObject<Unit>(vJson);
+        }
     }
 }

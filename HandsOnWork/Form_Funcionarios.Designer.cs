@@ -31,6 +31,7 @@ namespace HandsOnWork
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Funcionarios));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_Listar = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.lbl_ID = new System.Windows.Forms.Label();
             this.btn_Excluir = new System.Windows.Forms.Button();
@@ -50,9 +51,8 @@ namespace HandsOnWork
             this.cl_CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_Cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_Fechar = new System.Windows.Forms.Button();
             this.btn_Limpar = new System.Windows.Forms.Button();
-            this.btn_Listar = new System.Windows.Forms.Button();
+            this.btn_Fechar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -80,6 +80,15 @@ namespace HandsOnWork
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(614, 167);
             this.panel1.TabIndex = 0;
+            // 
+            // btn_Listar
+            // 
+            this.btn_Listar.Location = new System.Drawing.Point(492, 122);
+            this.btn_Listar.Name = "btn_Listar";
+            this.btn_Listar.Size = new System.Drawing.Size(75, 26);
+            this.btn_Listar.TabIndex = 13;
+            this.btn_Listar.Text = "Listar";
+            this.btn_Listar.UseVisualStyleBackColor = true;
             // 
             // textBox5
             // 
@@ -232,41 +241,33 @@ namespace HandsOnWork
             this.cl_Cargo.HeaderText = "Cargo";
             this.cl_Cargo.Name = "cl_Cargo";
             // 
-            // btn_Fechar
-            // 
-            this.btn_Fechar.Location = new System.Drawing.Point(551, 444);
-            this.btn_Fechar.Name = "btn_Fechar";
-            this.btn_Fechar.Size = new System.Drawing.Size(75, 23);
-            this.btn_Fechar.TabIndex = 2;
-            this.btn_Fechar.Text = "Fechar";
-            this.btn_Fechar.UseVisualStyleBackColor = true;
-            this.btn_Fechar.Click += new System.EventHandler(this.btn_Fechar_Click);
-            // 
             // btn_Limpar
             // 
-            this.btn_Limpar.Location = new System.Drawing.Point(459, 444);
+            this.btn_Limpar.Location = new System.Drawing.Point(484, 445);
             this.btn_Limpar.Name = "btn_Limpar";
             this.btn_Limpar.Size = new System.Drawing.Size(75, 23);
-            this.btn_Limpar.TabIndex = 4;
+            this.btn_Limpar.TabIndex = 2;
             this.btn_Limpar.Text = "Limpar";
             this.btn_Limpar.UseVisualStyleBackColor = true;
+            this.btn_Limpar.Click += new System.EventHandler(this.btn_Limpar_Click);
             // 
-            // btn_Listar
+            // btn_Fechar
             // 
-            this.btn_Listar.Location = new System.Drawing.Point(492, 122);
-            this.btn_Listar.Name = "btn_Listar";
-            this.btn_Listar.Size = new System.Drawing.Size(75, 26);
-            this.btn_Listar.TabIndex = 13;
-            this.btn_Listar.Text = "Listar";
-            this.btn_Listar.UseVisualStyleBackColor = true;
+            this.btn_Fechar.Location = new System.Drawing.Point(565, 445);
+            this.btn_Fechar.Name = "btn_Fechar";
+            this.btn_Fechar.Size = new System.Drawing.Size(75, 23);
+            this.btn_Fechar.TabIndex = 14;
+            this.btn_Fechar.Text = "Fechar";
+            this.btn_Fechar.UseVisualStyleBackColor = true;
+            this.btn_Fechar.Click += new System.EventHandler(this.btn_Fechar_Click_1);
             // 
             // Form_Funcionarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(693, 495);
-            this.Controls.Add(this.btn_Limpar);
             this.Controls.Add(this.btn_Fechar);
+            this.Controls.Add(this.btn_Limpar);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -297,7 +298,7 @@ namespace HandsOnWork
         private System.Windows.Forms.Label lbl_CPF;
         private System.Windows.Forms.Label lbl_Nome;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button btn_Fechar;
+        private System.Windows.Forms.Button btn_Limpar;
         private System.Windows.Forms.Label lbl_ID;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ID;
@@ -305,7 +306,7 @@ namespace HandsOnWork
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_CPF;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Cargo;
-        private System.Windows.Forms.Button btn_Limpar;
         private System.Windows.Forms.Button btn_Listar;
+        private System.Windows.Forms.Button btn_Fechar;
     }
 }

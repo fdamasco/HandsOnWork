@@ -36,7 +36,7 @@ namespace HandsOnWork
             this.lbl_ID = new System.Windows.Forms.Label();
             this.btn_Excluir = new System.Windows.Forms.Button();
             this.btn_Editar = new System.Windows.Forms.Button();
-            this.btn_Salvar = new System.Windows.Forms.Button();
+            this.btn_Novo = new System.Windows.Forms.Button();
             this.txt_Conta = new System.Windows.Forms.TextBox();
             this.txt_Email = new System.Windows.Forms.TextBox();
             this.txt_Cpf = new System.Windows.Forms.TextBox();
@@ -51,8 +51,8 @@ namespace HandsOnWork
             this.cl_CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_Conta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_Fechar = new System.Windows.Forms.Button();
             this.btn_Limpar = new System.Windows.Forms.Button();
+            this.btn_Fechar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -67,7 +67,7 @@ namespace HandsOnWork
             this.panel1.Controls.Add(this.lbl_ID);
             this.panel1.Controls.Add(this.btn_Excluir);
             this.panel1.Controls.Add(this.btn_Editar);
-            this.panel1.Controls.Add(this.btn_Salvar);
+            this.panel1.Controls.Add(this.btn_Novo);
             this.panel1.Controls.Add(this.txt_Conta);
             this.panel1.Controls.Add(this.txt_Email);
             this.panel1.Controls.Add(this.txt_Cpf);
@@ -89,6 +89,7 @@ namespace HandsOnWork
             this.btn_Listar.TabIndex = 12;
             this.btn_Listar.Text = "Listar";
             this.btn_Listar.UseVisualStyleBackColor = true;
+            this.btn_Listar.Click += new System.EventHandler(this.btn_Listar_Click);
             // 
             // txt_ID
             // 
@@ -126,15 +127,15 @@ namespace HandsOnWork
             this.btn_Editar.UseVisualStyleBackColor = true;
             this.btn_Editar.Click += new System.EventHandler(this.btn_Editar_Click);
             // 
-            // btn_Salvar
+            // btn_Novo
             // 
-            this.btn_Salvar.Location = new System.Drawing.Point(492, 20);
-            this.btn_Salvar.Name = "btn_Salvar";
-            this.btn_Salvar.Size = new System.Drawing.Size(75, 26);
-            this.btn_Salvar.TabIndex = 8;
-            this.btn_Salvar.Text = "Salvar";
-            this.btn_Salvar.UseVisualStyleBackColor = true;
-            this.btn_Salvar.Click += new System.EventHandler(this.btn_Salvar_Click);
+            this.btn_Novo.Location = new System.Drawing.Point(492, 20);
+            this.btn_Novo.Name = "btn_Novo";
+            this.btn_Novo.Size = new System.Drawing.Size(75, 26);
+            this.btn_Novo.TabIndex = 8;
+            this.btn_Novo.Text = "Salvar";
+            this.btn_Novo.UseVisualStyleBackColor = true;
+            this.btn_Novo.Click += new System.EventHandler(this.btn_Salvar_Click);
             // 
             // txt_Conta
             // 
@@ -244,32 +245,33 @@ namespace HandsOnWork
             this.cl_Conta.HeaderText = "Conta";
             this.cl_Conta.Name = "cl_Conta";
             // 
-            // btn_Fechar
-            // 
-            this.btn_Fechar.Location = new System.Drawing.Point(551, 444);
-            this.btn_Fechar.Name = "btn_Fechar";
-            this.btn_Fechar.Size = new System.Drawing.Size(75, 23);
-            this.btn_Fechar.TabIndex = 2;
-            this.btn_Fechar.Text = "Fechar";
-            this.btn_Fechar.UseVisualStyleBackColor = true;
-            this.btn_Fechar.Click += new System.EventHandler(this.btn_Fechar_Click);
-            // 
             // btn_Limpar
             // 
-            this.btn_Limpar.Location = new System.Drawing.Point(459, 444);
+            this.btn_Limpar.Location = new System.Drawing.Point(484, 445);
             this.btn_Limpar.Name = "btn_Limpar";
             this.btn_Limpar.Size = new System.Drawing.Size(75, 23);
             this.btn_Limpar.TabIndex = 3;
             this.btn_Limpar.Text = "Limpar";
             this.btn_Limpar.UseVisualStyleBackColor = true;
+            this.btn_Limpar.Click += new System.EventHandler(this.btn_Limpar_Click);
+            // 
+            // btn_Fechar
+            // 
+            this.btn_Fechar.Location = new System.Drawing.Point(565, 445);
+            this.btn_Fechar.Name = "btn_Fechar";
+            this.btn_Fechar.Size = new System.Drawing.Size(75, 23);
+            this.btn_Fechar.TabIndex = 13;
+            this.btn_Fechar.Text = "Fechar";
+            this.btn_Fechar.UseVisualStyleBackColor = true;
+            this.btn_Fechar.Click += new System.EventHandler(this.btn_Fechar_Click_1);
             // 
             // Form_Clientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(693, 495);
-            this.Controls.Add(this.btn_Limpar);
             this.Controls.Add(this.btn_Fechar);
+            this.Controls.Add(this.btn_Limpar);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -290,7 +292,7 @@ namespace HandsOnWork
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btn_Excluir;
         private System.Windows.Forms.Button btn_Editar;
-        private System.Windows.Forms.Button btn_Salvar;
+        private System.Windows.Forms.Button btn_Novo;
         private System.Windows.Forms.TextBox txt_Conta;
         private System.Windows.Forms.TextBox txt_Email;
         private System.Windows.Forms.TextBox txt_Cpf;
@@ -300,7 +302,6 @@ namespace HandsOnWork
         private System.Windows.Forms.Label lbl_CPF;
         private System.Windows.Forms.Label lbl_Nome;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button btn_Fechar;
         private System.Windows.Forms.Label lbl_ID;
         private System.Windows.Forms.TextBox txt_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ID;
@@ -310,5 +311,6 @@ namespace HandsOnWork
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Conta;
         private System.Windows.Forms.Button btn_Limpar;
         private System.Windows.Forms.Button btn_Listar;
+        private System.Windows.Forms.Button btn_Fechar;
     }
 }

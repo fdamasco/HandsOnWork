@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form_Confirmar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Confirmar.Designer.cs">
+      <DependentUpon>Form_Confirmar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Funcionarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,16 +73,28 @@
       <DependentUpon>Form_Menu.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form_ListagemClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ListagemClientes.Designer.cs">
+      <DependentUpon>Form_ListagemClientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form_Clientes.resx">
       <DependentUpon>Form_Clientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Confirmar.resx">
+      <DependentUpon>Form_Confirmar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Funcionarios.resx">
       <DependentUpon>Form_Funcionarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Menu.resx">
       <DependentUpon>Form_Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ListagemClientes.resx">
+      <DependentUpon>Form_ListagemClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -108,6 +126,10 @@
     <Content Include="Imagens\2657175.ico" />
     <Content Include="Imagens\3280979.ico" />
     <Content Include="Imagens\3280979.png" />
+    <None Include="Resources\Vector %281%29.png" />
+    <None Include="Resources\Vector.png" />
+    <None Include="Resources\Vector.ico" />
+    <None Include="Resources\Image1.bmp" />
     <None Include="Resources\3280979.png" />
     <None Include="Resources\3280979.ico" />
     <None Include="Resources\2657175.png" />
