@@ -37,7 +37,7 @@ namespace HandsOnWork
                 Fichario F = new Fichario("C:\\Users\\fedam\\OneDrive\\Documentos\\HoW4\\Fichario");
                 if (F.status)
                 {
-                    F.Incluir(Cliente.Id, clienteJson);
+                    F.Cadastrar(Cliente.Id, clienteJson);
                     if (F.status)
                     {
                         MessageBox.Show(F.mensagem, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -123,7 +123,7 @@ namespace HandsOnWork
                 if (F.status)
                 {
                     //Escrever os dados do cliente no formulário
-                    string clienteJson = F.Buscar(txt_ID.Text);
+                    string clienteJson = F.Listar(txt_ID.Text);
                     Clientes.Unit Cliente = new Clientes.Unit();
                     Cliente = Clientes.DesSerializedClassUnit(clienteJson);
                     EscreveFormulario(Cliente);
@@ -194,24 +194,7 @@ namespace HandsOnWork
 
         private void btn_Listar_Click(object sender, EventArgs e)
         {
-           /* Fichario F = new Fichario("C:\\Users\\fedam\\OneDrive\\Documentos\\HoW4\\Fichario");
-            if (F.status)
-            {
-                List<string> List = new List<string>();
-                List = F.Listar();
-                Form_ListagemClientes ListagemClientes = new Form_ListagemClientes();
-                ListagemClientes.ShowDialog();
-
-            }
-            else
-            {
-                MessageBox.Show("ERRO: " + F.mensagem, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
-
-
-
-            
-
+          
           if (txt_ID.Text == "")
             {
                 MessageBox.Show("Código do Cliente não existe!", "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -221,7 +204,7 @@ namespace HandsOnWork
                 Fichario F = new Fichario("C:\\Users\\fedam\\OneDrive\\Documentos\\HoW4\\Fichario");
                 if (F.status)
                 {
-                    string clienteJson = F.Buscar(txt_ID.Text);
+                    string clienteJson = F.Listar(txt_ID.Text);
                     Clientes.Unit Cliente = new Clientes.Unit();
                     Cliente = Clientes.DesSerializedClassUnit(clienteJson);
                     EscreveFormulario(Cliente);
@@ -232,6 +215,46 @@ namespace HandsOnWork
                     MessageBox.Show("ERRO: " + F.mensagem, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btn_Pesquisar_Click(object sender, EventArgs e)
+        {
+           Fichario F = new Fichario("C:\\Users\\fedam\\OneDrive\\Documentos\\HoW4\\Fichario");
+           if (F.status)
+           {
+               List<string> List = new List<string>();
+               List = F.Pesquisar();
+                if (F.status)
+                {
+                    List<List<string>> ListaPesquisa = new List<List<string>>();
+                    for (int i = 0; i <= List.Count - 1; i++)
+                    {
+                        Clientes.Unit Cliente = Clientes.DesSerializedClassUnit(List[i]);
+                        ListaPesquisa.Add(new List<string> { Cliente.Id, Cliente.Nome });
+                    }
+                    Form_PesquisarClientes PesquisaClientes = new Form_PesquisarClientes(ListaPesquisa);
+                    PesquisaClientes.ShowDialog();
+                    if (PesquisaClientes.DialogResult == DialogResult.OK)
+                    {
+                        var idSelect = PesquisaClientes.IdSelect;
+                        string clienteJson = F.Listar(idSelect);
+                        Clientes.Unit Cliente = new Clientes.Unit();
+                        Cliente = Clientes.DesSerializedClassUnit(clienteJson);
+                        EscreveFormulario(Cliente);
+                    }
+                } 
+                else
+                {
+                    MessageBox.Show("ERRO " + F.mensagem, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
+           }
+           else
+           {
+               MessageBox.Show("ERRO: " + F.mensagem, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
+           }
+
         }
     }
 }

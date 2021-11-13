@@ -53,6 +53,7 @@ namespace HandsOnWork
             this.cl_Conta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_Limpar = new System.Windows.Forms.Button();
             this.btn_Fechar = new System.Windows.Forms.Button();
+            this.btn_Pesquisar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -133,7 +134,7 @@ namespace HandsOnWork
             this.btn_Novo.Name = "btn_Novo";
             this.btn_Novo.Size = new System.Drawing.Size(75, 26);
             this.btn_Novo.TabIndex = 8;
-            this.btn_Novo.Text = "Salvar";
+            this.btn_Novo.Text = "Cadastrar";
             this.btn_Novo.UseVisualStyleBackColor = true;
             this.btn_Novo.Click += new System.EventHandler(this.btn_Salvar_Click);
             // 
@@ -247,7 +248,7 @@ namespace HandsOnWork
             // 
             // btn_Limpar
             // 
-            this.btn_Limpar.Location = new System.Drawing.Point(484, 445);
+            this.btn_Limpar.Location = new System.Drawing.Point(487, 445);
             this.btn_Limpar.Name = "btn_Limpar";
             this.btn_Limpar.Size = new System.Drawing.Size(75, 23);
             this.btn_Limpar.TabIndex = 3;
@@ -257,7 +258,7 @@ namespace HandsOnWork
             // 
             // btn_Fechar
             // 
-            this.btn_Fechar.Location = new System.Drawing.Point(565, 445);
+            this.btn_Fechar.Location = new System.Drawing.Point(406, 445);
             this.btn_Fechar.Name = "btn_Fechar";
             this.btn_Fechar.Size = new System.Drawing.Size(75, 23);
             this.btn_Fechar.TabIndex = 13;
@@ -265,11 +266,22 @@ namespace HandsOnWork
             this.btn_Fechar.UseVisualStyleBackColor = true;
             this.btn_Fechar.Click += new System.EventHandler(this.btn_Fechar_Click_1);
             // 
+            // btn_Pesquisar
+            // 
+            this.btn_Pesquisar.Location = new System.Drawing.Point(568, 445);
+            this.btn_Pesquisar.Name = "btn_Pesquisar";
+            this.btn_Pesquisar.Size = new System.Drawing.Size(75, 23);
+            this.btn_Pesquisar.TabIndex = 14;
+            this.btn_Pesquisar.Text = "Pesquisar";
+            this.btn_Pesquisar.UseVisualStyleBackColor = true;
+            this.btn_Pesquisar.Click += new System.EventHandler(this.btn_Pesquisar_Click);
+            // 
             // Form_Clientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(693, 495);
+            this.Controls.Add(this.btn_Pesquisar);
             this.Controls.Add(this.btn_Fechar);
             this.Controls.Add(this.btn_Limpar);
             this.Controls.Add(this.dataGridView1);
@@ -312,5 +324,6 @@ namespace HandsOnWork
         private System.Windows.Forms.Button btn_Limpar;
         private System.Windows.Forms.Button btn_Listar;
         private System.Windows.Forms.Button btn_Fechar;
+        private System.Windows.Forms.Button btn_Pesquisar;
     }
 }

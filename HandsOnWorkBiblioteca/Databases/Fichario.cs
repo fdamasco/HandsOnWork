@@ -40,7 +40,7 @@ namespace HandsOnWorkBiblioteca.Classes.Databases
 
         }
 
-        public void Incluir(string Id, string jsonUnit)
+        public void Cadastrar(string Id, string jsonUnit)
         {
             status = true;
             try
@@ -66,7 +66,7 @@ namespace HandsOnWorkBiblioteca.Classes.Databases
            
         }
 
-        public string Buscar(string Id)
+        public string Listar(string Id)
         {
             status = true;
             try
@@ -92,7 +92,7 @@ namespace HandsOnWorkBiblioteca.Classes.Databases
             return "";
         }
 
-        public List<string> Listar()
+        public List<string> Pesquisar()
         {
             status = true;
             //Variável de lista de strings, que vai ser o retorno da função
