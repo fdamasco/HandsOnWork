@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
+using HandsOnWorkBiblioteca.Databases;
+using HandsOnWorkBiblioteca;
 
 
 //Biblioteca destinada às regras de negócio
@@ -12,10 +14,12 @@ namespace HandsOnWorkBiblioteca
 {
     public class Clientes
     {
+
+
         //Subclasse que representa a unidade de Cliente
         public class Unit
         {
-            
+
             public string Id { get; set; }
 
             [Required(ErrorMessage = "Campo 'Nome' é obrigatório!")]
@@ -52,10 +56,109 @@ namespace HandsOnWorkBiblioteca
 
                 }
             }
-            //Subclasse que representa uma lista de Clientes
-           
-        }
 
+            #region "CRUD"
+
+            public void IncluirFicharioSQL(string Conexao)
+            {
+                string clienteJson = Clientes.SerializedClassUnit(this);
+                FicharioSQLServer F = new FicharioSQLServer(Conexao);
+                if (F.status)
+                {
+                    F.Cadastrar(this.Id, clienteJson);
+                    if (!(F.status))
+                    {
+                        throw new Exception(F.mensagem);
+                    }
+                }
+                else
+                {
+                    throw new Exception(F.mensagem);
+                }
+            }
+
+
+            public void EditarFicharioSQL(string conexao)
+            {
+                string clienteJson = Clientes.SerializedClassUnit(this);
+                FicharioSQLServer F = new FicharioSQLServer(conexao);
+                if (F.status)
+                {
+                    F.Editar(this.Id, clienteJson);
+                    if (!(F.status))
+                    {
+                        throw new Exception(F.mensagem);
+                    }
+                }
+
+                else
+                {
+                    throw new Exception(F.mensagem);
+                }
+            }
+
+            public void ExcluirFicharioSQL(string conexao)
+            {
+                FicharioSQLServer F = new FicharioSQLServer(conexao);
+                if (F.status)
+                {
+                    F.Apagar(this.Id);
+                    if (!(F.status))
+                    {
+                        throw new Exception(F.mensagem);
+                    }
+                }
+                else
+                {
+                    throw new Exception(F.mensagem);
+                }
+
+            }
+
+            public Unit ListarFicharioSQL(string id, string conexao)
+            {
+                FicharioSQLServer F = new FicharioSQLServer(conexao);
+                if (F.status)
+                {
+                    string clienteJson = F.Listar(id);
+                    return Clientes.DesSerializedClassUnit(clienteJson);
+                }
+                else
+                {
+                    throw new Exception(F.mensagem);
+                }
+            }
+
+            public List<List<string>> PesquisarFicharioSQL(string conexao)
+            {
+                FicharioSQLServer F = new FicharioSQLServer(conexao);
+                if (F.status)
+                {
+                    List<string> List = new List<string>();
+                    List = F.Pesquisar();
+                    if (F.status)
+                    {
+                        List<List<string>> ListPesquisar = new List<List<string>>();
+                        for (int i = 0; i <= List.Count - 1; i++)
+                        {
+                            Clientes.Unit Cliente = Clientes.DesSerializedClassUnit(List[i]);
+                            ListPesquisar.Add(new List<string> { Cliente.Id, Cliente.Nome });
+                        }
+                        return ListPesquisar;
+                    }
+                    else
+                    {
+                        throw new Exception(F.mensagem);
+                    }
+                }
+                else
+                {
+                    throw new Exception(F.mensagem);
+                }
+            }
+            #endregion
+        }
+        
         //A lista de clientes é um conjunto de Clientes.Unit
         public class List
         {

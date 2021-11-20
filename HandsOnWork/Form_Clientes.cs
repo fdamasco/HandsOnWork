@@ -1,6 +1,5 @@
 ﻿using System;
 using HandsOnWorkBiblioteca;
-using HandsOnWorkBiblioteca.Classes;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,7 +10,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using System.ComponentModel.DataAnnotations;
-using HandsOnWorkBiblioteca.Classes.Databases;
+using HandsOnWorkBiblioteca.Databases;
+using System.Net;
+using System.IO;
 
 namespace HandsOnWork
 {
@@ -31,29 +32,8 @@ namespace HandsOnWork
                 Clientes.Unit Cliente = new Clientes.Unit();
                 Cliente = LeituraFormulario();
                 Cliente.ValidaClasse();
-                //transformação da classe em string
-                string clienteJson = Clientes.SerializedClassUnit(Cliente);
-                // conexão com fichário
-                Fichario F = new Fichario("C:\\Users\\fedam\\OneDrive\\Documentos\\HoW4\\Fichario");
-                if (F.status)
-                {
-                    F.Cadastrar(Cliente.Id, clienteJson);
-                    if (F.status)
-                    {
-                        MessageBox.Show(F.mensagem, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LimparCampos();
-                    }
-                    else
-                    {
-                        MessageBox.Show("ERRO: " + F.mensagem, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("ERRO: " + F.mensagem, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
+                Cliente.IncluirFicharioSQL("Cliente");
+                MessageBox.Show("Cliente cadastrado com sucesso!", "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             catch (ValidationException Excep)
@@ -78,27 +58,8 @@ namespace HandsOnWork
                     Clientes.Unit Cliente = new Clientes.Unit();
                     Cliente = LeituraFormulario();
                     Cliente.ValidaClasse();
-                    //transformação da classe em string
-                    string clienteJson = Clientes.SerializedClassUnit(Cliente);
-                    // conexão com fichário
-                    Fichario F = new Fichario("C:\\Users\\fedam\\OneDrive\\Documentos\\HoW4\\Fichario");
-                    if (F.status)
-                    {
-                        F.Editar(Cliente.Id, clienteJson);
-                        if (F.status)
-                        {
-                            MessageBox.Show(F.mensagem, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show("ERRO: " + F.mensagem, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("ERRO: " + F.mensagem, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    Cliente.EditarFicharioSQL("Cliente");
+                    MessageBox.Show("Dados editados com sucesso!", "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
 
@@ -119,35 +80,32 @@ namespace HandsOnWork
             //Caso contrário, conecta ao Fichário
             else
             {
-                Fichario F = new Fichario("C:\\Users\\fedam\\OneDrive\\Documentos\\HoW4\\Fichario");
-                if (F.status)
-                {
-                    //Escrever os dados do cliente no formulário
-                    string clienteJson = F.Listar(txt_ID.Text);
-                    Clientes.Unit Cliente = new Clientes.Unit();
-                    Cliente = Clientes.DesSerializedClassUnit(clienteJson);
-                    EscreveFormulario(Cliente);
 
-                    Form_Confirmar Confirma = new Form_Confirmar("Você realmente deseja excluir o(a) cliente selecionado(a)?");
-                    Confirma.ShowDialog();
-                    if (Confirma.DialogResult == DialogResult.Yes)
+                try
+                {
+                    Clientes.Unit Cliente = new Clientes.Unit();
+                    Cliente = Cliente.ListarFicharioSQL(txt_ID.Text, "Cliente");
+                    if (Cliente == null)
                     {
-                        F.Apagar(txt_ID.Text);
-                        if (F.status)
+                        MessageBox.Show("Cliente não encontrado!", "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        EscreveFormulario(Cliente);
+                        Form_Confirmar Confirma = new Form_Confirmar("Você realmente deseja excluir o(a) cliente selecionado(a)?");
+                        Confirma.ShowDialog();
+                        if (Confirma.DialogResult == DialogResult.Yes)
                         {
-                            MessageBox.Show(F.mensagem, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                           
+                            Cliente.ExcluirFicharioSQL("Cliente");
+                            MessageBox.Show("Cliente excluído com sucesso!", "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LimparCampos();
                         }
-                        else
-                        {
-                            MessageBox.Show("ERRO: " + F.mensagem, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
                     }
-                   
                 }
-                else
+                catch (Exception Ex)
                 {
-                    MessageBox.Show("ERRO: " + F.mensagem, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Ex.Message, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -194,67 +152,63 @@ namespace HandsOnWork
 
         private void btn_Listar_Click(object sender, EventArgs e)
         {
-          
-          if (txt_ID.Text == "")
+            if (txt_ID.Text == "")
             {
                 MessageBox.Show("Código do Cliente não existe!", "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                Fichario F = new Fichario("C:\\Users\\fedam\\OneDrive\\Documentos\\HoW4\\Fichario");
-                if (F.status)
+                try
                 {
-                    string clienteJson = F.Listar(txt_ID.Text);
-                    Clientes.Unit Cliente = new Clientes.Unit();
-                    Cliente = Clientes.DesSerializedClassUnit(clienteJson);
-                    EscreveFormulario(Cliente);
 
+
+                    Clientes.Unit Cliente = new Clientes.Unit();
+                    Cliente = Cliente.ListarFicharioSQL(txt_ID.Text, "Cliente");
+                    if (Cliente == null)
+                    {
+                        MessageBox.Show("Cliente não encontrado!", "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        EscreveFormulario(Cliente);
+                    }
                 }
-                else
+                catch (Exception Ex)
                 {
-                    MessageBox.Show("ERRO: " + F.mensagem, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    MessageBox.Show(Ex.Message, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void btn_Pesquisar_Click(object sender, EventArgs e)
         {
-           Fichario F = new Fichario("C:\\Users\\fedam\\OneDrive\\Documentos\\HoW4\\Fichario");
-           if (F.status)
-           {
-               List<string> List = new List<string>();
-               List = F.Pesquisar();
-                if (F.status)
+
+            try
+            {
+                Clientes.Unit Cliente = new Clientes.Unit();
+                var ListPesquisar = Cliente.PesquisarFicharioSQL("Cliente");
+                Form_PesquisarClientes Form = new Form_PesquisarClientes(ListPesquisar);
+                Form.ShowDialog();
+                if (Form.DialogResult == DialogResult.OK)
                 {
-                    List<List<string>> ListaPesquisa = new List<List<string>>();
-                    for (int i = 0; i <= List.Count - 1; i++)
+                    var idSelect = Form.IdSelect;
+                    Cliente = Cliente.ListarFicharioSQL(idSelect, "Cliente");
+                    if (Cliente == null)
                     {
-                        Clientes.Unit Cliente = Clientes.DesSerializedClassUnit(List[i]);
-                        ListaPesquisa.Add(new List<string> { Cliente.Id, Cliente.Nome });
+                        MessageBox.Show("Não existem clientes cadastrados!", "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    Form_PesquisarClientes PesquisaClientes = new Form_PesquisarClientes(ListaPesquisa);
-                    PesquisaClientes.ShowDialog();
-                    if (PesquisaClientes.DialogResult == DialogResult.OK)
+                    else
                     {
-                        var idSelect = PesquisaClientes.IdSelect;
-                        string clienteJson = F.Listar(idSelect);
-                        Clientes.Unit Cliente = new Clientes.Unit();
-                        Cliente = Clientes.DesSerializedClassUnit(clienteJson);
                         EscreveFormulario(Cliente);
                     }
-                } 
-                else
-                {
-                    MessageBox.Show("ERRO " + F.mensagem, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
 
-
-           }
-           else
-           {
-               MessageBox.Show("ERRO: " + F.mensagem, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
-           }
-
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
