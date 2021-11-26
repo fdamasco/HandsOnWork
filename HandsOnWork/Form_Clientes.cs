@@ -32,7 +32,7 @@ namespace HandsOnWork
                 Clientes.Unit Cliente = new Clientes.Unit();
                 Cliente = LeituraFormulario();
                 Cliente.ValidaClasse();
-                Cliente.IncluirFicharioSQL("Cliente");
+                Cliente.Incluir();
                 MessageBox.Show("Cliente cadastrado com sucesso!", "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
@@ -58,7 +58,7 @@ namespace HandsOnWork
                     Clientes.Unit Cliente = new Clientes.Unit();
                     Cliente = LeituraFormulario();
                     Cliente.ValidaClasse();
-                    Cliente.EditarFicharioSQL("Cliente");
+                    Cliente.Editar();
                     MessageBox.Show("Dados editados com sucesso!", "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
@@ -84,7 +84,7 @@ namespace HandsOnWork
                 try
                 {
                     Clientes.Unit Cliente = new Clientes.Unit();
-                    Cliente = Cliente.ListarFicharioSQL(txt_ID.Text, "Cliente");
+                    Cliente = Cliente.Listar(txt_ID.Text);
                     if (Cliente == null)
                     {
                         MessageBox.Show("Cliente não encontrado!", "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -97,7 +97,7 @@ namespace HandsOnWork
                         if (Confirma.DialogResult == DialogResult.Yes)
                         {
                            
-                            Cliente.ExcluirFicharioSQL("Cliente");
+                            Cliente.Excluir();
                             MessageBox.Show("Cliente excluído com sucesso!", "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LimparCampos();
                         }
@@ -163,7 +163,7 @@ namespace HandsOnWork
 
 
                     Clientes.Unit Cliente = new Clientes.Unit();
-                    Cliente = Cliente.ListarFicharioSQL(txt_ID.Text, "Cliente");
+                    Cliente = Cliente.Listar(txt_ID.Text);
                     if (Cliente == null)
                     {
                         MessageBox.Show("Cliente não encontrado!", "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -187,13 +187,13 @@ namespace HandsOnWork
             try
             {
                 Clientes.Unit Cliente = new Clientes.Unit();
-                var ListPesquisar = Cliente.PesquisarFicharioSQL("Cliente");
+                var ListPesquisar = Cliente.Pesquisar();
                 Form_PesquisarClientes Form = new Form_PesquisarClientes(ListPesquisar);
                 Form.ShowDialog();
                 if (Form.DialogResult == DialogResult.OK)
                 {
                     var idSelect = Form.IdSelect;
-                    Cliente = Cliente.ListarFicharioSQL(idSelect, "Cliente");
+                    Cliente = Cliente.Listar(idSelect);
                     if (Cliente == null)
                     {
                         MessageBox.Show("Não existem clientes cadastrados!", "UniBank", MessageBoxButtons.OK, MessageBoxIcon.Error);

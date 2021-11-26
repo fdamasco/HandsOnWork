@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 using HandsOnWorkBiblioteca.Databases;
 using HandsOnWorkBiblioteca;
+using System.Data;
 
 
 //Biblioteca destinada às regras de negócio
@@ -57,124 +58,288 @@ namespace HandsOnWorkBiblioteca
                 }
             }
 
-            #region "CRUD"
 
-            public void IncluirFicharioSQL(string Conexao)
+            #region
+
+
+            public string ToInsert()
             {
-                string clienteJson = Clientes.SerializedClassUnit(this);
-                FicharioSQLServer F = new FicharioSQLServer(Conexao);
-                if (F.status)
-                {
-                    F.Cadastrar(this.Id, clienteJson);
-                    if (!(F.status))
-                    {
-                        throw new Exception(F.mensagem);
-                    }
-                }
-                else
-                {
-                    throw new Exception(F.mensagem);
-                }
-            }
-
-
-            public void EditarFicharioSQL(string conexao)
-            {
-                string clienteJson = Clientes.SerializedClassUnit(this);
-                FicharioSQLServer F = new FicharioSQLServer(conexao);
-                if (F.status)
-                {
-                    F.Editar(this.Id, clienteJson);
-                    if (!(F.status))
-                    {
-                        throw new Exception(F.mensagem);
-                    }
-                }
-
-                else
-                {
-                    throw new Exception(F.mensagem);
-                }
-            }
-
-            public void ExcluirFicharioSQL(string conexao)
-            {
-                FicharioSQLServer F = new FicharioSQLServer(conexao);
-                if (F.status)
-                {
-                    F.Apagar(this.Id);
-                    if (!(F.status))
-                    {
-                        throw new Exception(F.mensagem);
-                    }
-                }
-                else
-                {
-                    throw new Exception(F.mensagem);
-                }
+                string SQL;
+                SQL = @"INSERT INTO Tb_Cliente
+                    (Id
+                    ,Nome
+                    ,Cpf
+                    ,Email
+                    ,Conta)
+                     VALUES ";
+                SQL += "('" + this.Id + "'";
+                SQL += ", '" + this.Nome + "'";
+                SQL += ", '" + this.Cpf + "'";
+                SQL += ", '" + this.Email + "'";
+                SQL += ", '" + this.Conta + "');";
+                return SQL;
 
             }
 
-            public Unit ListarFicharioSQL(string id, string conexao)
+            public string ToUpdate(string Id)
             {
-                FicharioSQLServer F = new FicharioSQLServer(conexao);
-                if (F.status)
-                {
-                    string clienteJson = F.Listar(id);
-                    return Clientes.DesSerializedClassUnit(clienteJson);
-                }
-                else
-                {
-                    throw new Exception(F.mensagem);
-                }
+                string SQL;
+                SQL = @"UPDATE Tb_Cliente
+                    SET ";
+                SQL += "Id = '" + this.Id + "'";
+                SQL += ", Nome = '" + this.Nome + "'";
+                SQL += "  , Cpf = '" + this.Cpf + "'";
+                SQL += "  , Email = '" + this.Email + "'";
+                SQL += "  , Conta = '" + this.Conta + "'";
+                SQL += " WHERE Id = '" + Id + "';";
+                return SQL;
             }
 
-            public List<List<string>> PesquisarFicharioSQL(string conexao)
+            public Unit DataRowToUnit(DataRow dr)
             {
-                FicharioSQLServer F = new FicharioSQLServer(conexao);
-                if (F.status)
+                Unit u = new Unit();
+                u.Id = dr["Id"].ToString();
+                u.Nome = dr["Nome"].ToString();
+                u.Cpf = dr["Cpf"].ToString();
+                u.Email = dr["Email"].ToString();
+                u.Conta = dr["Conta"].ToString();
+                return u;
+            }
+
+            public void Incluir()
+            {
+                try
                 {
-                    List<string> List = new List<string>();
-                    List = F.Pesquisar();
-                    if (F.status)
+                    string SQL;
+                    SQL = this.ToInsert();
+                    var db = new SQLServerClass();
+                    db.SQLCommand(SQL);
+                    db.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Cadastro não incluído!" + ex.Message);
+                }
+
+            }
+
+            public Unit Listar(string Id)
+            {
+                try
+                {
+                    string SQL = "SELECT *  FROM [Tb_Cliente] WHERE Id = '" + Id + "'";
+                    var db = new SQLServerClass();
+                    var Dt = db.SQLQuery(SQL);
+                    if(Dt.Rows.Count == 0)
                     {
-                        List<List<string>> ListPesquisar = new List<List<string>>();
-                        for (int i = 0; i <= List.Count - 1; i++)
-                        {
-                            Clientes.Unit Cliente = Clientes.DesSerializedClassUnit(List[i]);
-                            ListPesquisar.Add(new List<string> { Cliente.Id, Cliente.Nome });
-                        }
-                        return ListPesquisar;
+                        db.Close();
+                        throw new Exception("Cliente inexistente!");
                     }
                     else
                     {
-                        throw new Exception(F.mensagem);
+                        Unit u = this.DataRowToUnit(Dt.Rows[0]);
+                        return u;
                     }
                 }
-                else
+
+                catch (Exception ex)
                 {
-                    throw new Exception(F.mensagem);
+                    throw new Exception("ERRO: " + ex.Message);
                 }
             }
+
+            public void Editar()
+            {
+                try
+                {
+                    string SQL = "SELECT *  FROM [Tb_Cliente] WHERE Id = '" + Id + "'";
+                    var db = new SQLServerClass();
+                    var Dt = db.SQLQuery(SQL);
+                    if (Dt.Rows.Count == 0)
+                    {
+                        db.Close();
+                        throw new Exception("Cliente inexistente!" + Id);
+                    }
+                    else
+                    {
+                        SQL = this.ToUpdate(this.Id);
+                        db.SQLCommand(SQL);
+                        db.Close();
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    throw new Exception("ERRO: " + ex.Message);
+                }
+            }
+
+            public void Excluir()
+            {
+                try
+                {
+                    string SQL = "SELECT *  FROM [Tb_Cliente] WHERE Id = '" + this.Id + "'";
+                    var db = new SQLServerClass();
+                    var Dt = db.SQLQuery(SQL);
+                    if (Dt.Rows.Count == 0)
+                    {
+                        db.Close();
+                        throw new Exception("Cliente inexistente!" + this.Id); ;
+                    }
+                    else
+                    {
+                        SQL = "DELETE FROM Tb_Cliente WHERE Id = '" + this.Id + "'";
+                        db.SQLCommand(SQL);
+                        db.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("ERRO: " + ex.Message);
+                }
+            }
+
+            public List<List<string>> Pesquisar()
+            {
+                List<List<string>> ListaPesquisa = new List<List<string>>();
+                try
+                {
+                    var SQL = "SELECT * FROM Tb_Cliente";
+                    var db = new SQLServerClass();
+                    var Dt = db.SQLQuery(SQL);
+                    for (int i = 0; i <= Dt.Rows.Count - 1; i++)
+                    {
+                        ListaPesquisa.Add(new List<string> { Dt.Rows[i]["Id"].ToString(), Dt.Rows[i]["Nome"].ToString() });
+                    }
+                    return ListaPesquisa;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("ERRO: " + ex.Message);
+                }
+            }
+
             #endregion
-        }
-        
-        //A lista de clientes é um conjunto de Clientes.Unit
-        public class List
-        {
-            
-            public List<Unit> ListUnit { get; set; }
-        }
 
-        public static string SerializedClassUnit(Unit unit)
-        {
-            return JsonConvert.SerializeObject(unit);
-        }
+            //#region
 
-        //Método para transformar string em Json
-        public static Unit DesSerializedClassUnit(string vJson)
-        {
-            return JsonConvert.DeserializeObject<Unit>(vJson);
+            //    string clienteJson = Clientes.SerializedClassUnit(this);
+            //    FicharioSQLServer F = new FicharioSQLServer(Conexao);
+            //    if (F.status)
+            //    {
+            //        F.Cadastrar(this.Id, clienteJson);
+            //        if (!(F.status))
+            //        {
+            //            throw new Exception(F.mensagem);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        throw new Exception(F.mensagem);
+            //    }
+            //}
+
+
+            //public void EditarFicharioSQL(string conexao)
+            //{
+            //    string clienteJson = Clientes.SerializedClassUnit(this);
+            //    FicharioSQLServer F = new FicharioSQLServer(conexao);
+            //    if (F.status)
+            //    {
+            //        F.Editar(this.Id, clienteJson);
+            //        if (!(F.status))
+            //        {
+            //            throw new Exception(F.mensagem);
+            //        }
+            //    }
+
+            //    else
+            //    {
+            //        throw new Exception(F.mensagem);
+            //    }
+            //}
+
+            //public void ExcluirFicharioSQL(string conexao)
+            //{
+            //    FicharioSQLServer F = new FicharioSQLServer(conexao);
+            //    if (F.status)
+            //    {
+            //        F.Apagar(this.Id);
+            //        if (!(F.status))
+            //        {
+            //            throw new Exception(F.mensagem);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        throw new Exception(F.mensagem);
+            //    }
+
+            //}
+
+            //public Unit ListarFicharioSQL(string id, string conexao)
+            //{
+            //    FicharioSQLServer F = new FicharioSQLServer(conexao);
+            //    if (F.status)
+            //    {
+            //        string clienteJson = F.Listar(id);
+            //        return Clientes.DesSerializedClassUnit(clienteJson);
+            //    }
+            //    else
+            //    {
+            //        throw new Exception(F.mensagem);
+            //    }
+            //}
+
+            //public List<List<string>> PesquisarFicharioSQL(string conexao)
+            //{
+            //    FicharioSQLServer F = new FicharioSQLServer(conexao);
+            //    if (F.status)
+            //    {
+            //        List<string> List = new List<string>();
+            //        List = F.Pesquisar();
+            //        if (F.status)
+            //        {
+            //            List<List<string>> ListPesquisar = new List<List<string>>();
+            //            for (int i = 0; i <= List.Count - 1; i++)
+            //            {
+            //                Clientes.Unit Cliente = Clientes.DesSerializedClassUnit(List[i]);
+            //                ListPesquisar.Add(new List<string> { Cliente.Id, Cliente.Nome });
+            //            }
+            //            return ListPesquisar;
+            //        }
+            //        else
+            //        {
+            //            throw new Exception(F.mensagem);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        throw new Exception(F.mensagem);
+            //    }
+            //}
+
+            //#endregion
+
+
+            //A lista de clientes é um conjunto de Clientes.Unit
+            public class List
+            {
+
+                public List<Unit> ListUnit { get; set; }
+            }
+
+            public static string SerializedClassUnit(Unit unit)
+            {
+                return JsonConvert.SerializeObject(unit);
+            }
+
+            //Método para transformar string em Json
+            public static Unit DesSerializedClassUnit(string vJson)
+            {
+                return JsonConvert.DeserializeObject<Unit>(vJson);
+            }
         }
     }
 }
