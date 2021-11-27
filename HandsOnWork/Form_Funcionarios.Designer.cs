@@ -45,14 +45,14 @@ namespace HandsOnWork
             this.lbl_Email = new System.Windows.Forms.Label();
             this.lbl_CPF = new System.Windows.Forms.Label();
             this.lbl_Nome = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.col_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cl_Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cl_CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cl_Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cl_Cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_Limpar = new System.Windows.Forms.Button();
             this.btn_Fechar = new System.Windows.Forms.Button();
+            this.cl_Cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cl_Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cl_CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cl_Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -197,50 +197,6 @@ namespace HandsOnWork
             this.lbl_Nome.TabIndex = 0;
             this.lbl_Nome.Text = "Nome:";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.col_ID,
-            this.cl_Nome,
-            this.cl_CPF,
-            this.cl_Email,
-            this.cl_Cargo});
-            this.dataGridView1.Location = new System.Drawing.Point(39, 212);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(614, 216);
-            this.dataGridView1.TabIndex = 1;
-            // 
-            // col_ID
-            // 
-            this.col_ID.HeaderText = "Id";
-            this.col_ID.Name = "col_ID";
-            this.col_ID.Width = 50;
-            // 
-            // cl_Nome
-            // 
-            this.cl_Nome.HeaderText = "Nome";
-            this.cl_Nome.Name = "cl_Nome";
-            this.cl_Nome.Width = 180;
-            // 
-            // cl_CPF
-            // 
-            this.cl_CPF.HeaderText = "CPF";
-            this.cl_CPF.Name = "cl_CPF";
-            this.cl_CPF.Width = 135;
-            // 
-            // cl_Email
-            // 
-            this.cl_Email.HeaderText = "E-mail";
-            this.cl_Email.Name = "cl_Email";
-            this.cl_Email.Width = 130;
-            // 
-            // cl_Cargo
-            // 
-            this.cl_Cargo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cl_Cargo.HeaderText = "Cargo";
-            this.cl_Cargo.Name = "cl_Cargo";
-            // 
             // btn_Limpar
             // 
             this.btn_Limpar.Location = new System.Drawing.Point(484, 445);
@@ -260,6 +216,59 @@ namespace HandsOnWork
             this.btn_Fechar.Text = "Fechar";
             this.btn_Fechar.UseVisualStyleBackColor = true;
             this.btn_Fechar.Click += new System.EventHandler(this.btn_Fechar_Click_1);
+            // 
+            // cl_Cargo
+            // 
+            this.cl_Cargo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cl_Cargo.HeaderText = "Cargo";
+            this.cl_Cargo.Name = "cl_Cargo";
+            this.cl_Cargo.ReadOnly = true;
+            // 
+            // cl_Email
+            // 
+            this.cl_Email.HeaderText = "E-mail";
+            this.cl_Email.Name = "cl_Email";
+            this.cl_Email.ReadOnly = true;
+            this.cl_Email.Width = 130;
+            // 
+            // cl_CPF
+            // 
+            this.cl_CPF.HeaderText = "CPF";
+            this.cl_CPF.Name = "cl_CPF";
+            this.cl_CPF.ReadOnly = true;
+            this.cl_CPF.Width = 135;
+            // 
+            // cl_Nome
+            // 
+            this.cl_Nome.HeaderText = "Nome";
+            this.cl_Nome.Name = "cl_Nome";
+            this.cl_Nome.ReadOnly = true;
+            this.cl_Nome.Width = 180;
+            // 
+            // col_ID
+            // 
+            this.col_ID.HeaderText = "Id";
+            this.col_ID.Name = "col_ID";
+            this.col_ID.ReadOnly = true;
+            this.col_ID.Width = 50;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.col_ID,
+            this.cl_Nome,
+            this.cl_CPF,
+            this.cl_Email,
+            this.cl_Cargo});
+            this.dataGridView1.Location = new System.Drawing.Point(39, 212);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(614, 216);
+            this.dataGridView1.TabIndex = 1;
             // 
             // Form_Funcionarios
             // 
@@ -297,16 +306,16 @@ namespace HandsOnWork
         private System.Windows.Forms.Label lbl_Email;
         private System.Windows.Forms.Label lbl_CPF;
         private System.Windows.Forms.Label lbl_Nome;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btn_Limpar;
         private System.Windows.Forms.Label lbl_ID;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_Nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_CPF;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_Email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_Cargo;
         private System.Windows.Forms.Button btn_Listar;
         private System.Windows.Forms.Button btn_Fechar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cl_Cargo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cl_Email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cl_CPF;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cl_Nome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_ID;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

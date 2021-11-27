@@ -45,17 +45,17 @@ namespace HandsOnWork
             this.lbl_Email = new System.Windows.Forms.Label();
             this.lbl_CPF = new System.Windows.Forms.Label();
             this.lbl_Nome = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgv_Clientes = new System.Windows.Forms.DataGridView();
+            this.btn_Limpar = new System.Windows.Forms.Button();
+            this.btn_Fechar = new System.Windows.Forms.Button();
+            this.btn_Pesquisar = new System.Windows.Forms.Button();
             this.col_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_Conta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_Limpar = new System.Windows.Forms.Button();
-            this.btn_Fechar = new System.Windows.Forms.Button();
-            this.btn_Pesquisar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Clientes)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -202,49 +202,26 @@ namespace HandsOnWork
             this.lbl_Nome.TabIndex = 0;
             this.lbl_Nome.Text = "Nome:";
             // 
-            // dataGridView1
+            // dgv_Clientes
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgv_Clientes.AllowUserToAddRows = false;
+            this.dgv_Clientes.AllowUserToDeleteRows = false;
+            this.dgv_Clientes.AllowUserToOrderColumns = true;
+            this.dgv_Clientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Clientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_ID,
             this.cl_Nome,
             this.cl_CPF,
             this.cl_Email,
             this.cl_Conta});
-            this.dataGridView1.Location = new System.Drawing.Point(39, 212);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(614, 216);
-            this.dataGridView1.TabIndex = 1;
-            // 
-            // col_ID
-            // 
-            this.col_ID.HeaderText = "Id";
-            this.col_ID.Name = "col_ID";
-            this.col_ID.Width = 50;
-            // 
-            // cl_Nome
-            // 
-            this.cl_Nome.HeaderText = "Nome";
-            this.cl_Nome.Name = "cl_Nome";
-            this.cl_Nome.Width = 180;
-            // 
-            // cl_CPF
-            // 
-            this.cl_CPF.HeaderText = "CPF";
-            this.cl_CPF.Name = "cl_CPF";
-            this.cl_CPF.Width = 135;
-            // 
-            // cl_Email
-            // 
-            this.cl_Email.HeaderText = "E-mail";
-            this.cl_Email.Name = "cl_Email";
-            this.cl_Email.Width = 130;
-            // 
-            // cl_Conta
-            // 
-            this.cl_Conta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cl_Conta.HeaderText = "Conta";
-            this.cl_Conta.Name = "cl_Conta";
+            this.dgv_Clientes.Location = new System.Drawing.Point(39, 212);
+            this.dgv_Clientes.MultiSelect = false;
+            this.dgv_Clientes.Name = "dgv_Clientes";
+            this.dgv_Clientes.ReadOnly = true;
+            this.dgv_Clientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_Clientes.Size = new System.Drawing.Size(614, 216);
+            this.dgv_Clientes.TabIndex = 1;
+            this.dgv_Clientes.DoubleClick += new System.EventHandler(this.dgv_Clientes_DoubleClick);
             // 
             // btn_Limpar
             // 
@@ -276,6 +253,41 @@ namespace HandsOnWork
             this.btn_Pesquisar.UseVisualStyleBackColor = true;
             this.btn_Pesquisar.Click += new System.EventHandler(this.btn_Pesquisar_Click);
             // 
+            // col_ID
+            // 
+            this.col_ID.HeaderText = "Id";
+            this.col_ID.Name = "col_ID";
+            this.col_ID.ReadOnly = true;
+            this.col_ID.Width = 40;
+            // 
+            // cl_Nome
+            // 
+            this.cl_Nome.HeaderText = "Nome";
+            this.cl_Nome.Name = "cl_Nome";
+            this.cl_Nome.ReadOnly = true;
+            this.cl_Nome.Width = 180;
+            // 
+            // cl_CPF
+            // 
+            this.cl_CPF.HeaderText = "CPF";
+            this.cl_CPF.Name = "cl_CPF";
+            this.cl_CPF.ReadOnly = true;
+            this.cl_CPF.Width = 135;
+            // 
+            // cl_Email
+            // 
+            this.cl_Email.HeaderText = "E-mail";
+            this.cl_Email.Name = "cl_Email";
+            this.cl_Email.ReadOnly = true;
+            this.cl_Email.Width = 140;
+            // 
+            // cl_Conta
+            // 
+            this.cl_Conta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cl_Conta.HeaderText = "Conta";
+            this.cl_Conta.Name = "cl_Conta";
+            this.cl_Conta.ReadOnly = true;
+            // 
             // Form_Clientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -284,7 +296,7 @@ namespace HandsOnWork
             this.Controls.Add(this.btn_Pesquisar);
             this.Controls.Add(this.btn_Fechar);
             this.Controls.Add(this.btn_Limpar);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgv_Clientes);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -294,7 +306,7 @@ namespace HandsOnWork
             this.Text = "Clientes";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Clientes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -313,17 +325,17 @@ namespace HandsOnWork
         private System.Windows.Forms.Label lbl_Email;
         private System.Windows.Forms.Label lbl_CPF;
         private System.Windows.Forms.Label lbl_Nome;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgv_Clientes;
         private System.Windows.Forms.Label lbl_ID;
         private System.Windows.Forms.TextBox txt_ID;
+        private System.Windows.Forms.Button btn_Limpar;
+        private System.Windows.Forms.Button btn_Listar;
+        private System.Windows.Forms.Button btn_Fechar;
+        private System.Windows.Forms.Button btn_Pesquisar;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_CPF;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Conta;
-        private System.Windows.Forms.Button btn_Limpar;
-        private System.Windows.Forms.Button btn_Listar;
-        private System.Windows.Forms.Button btn_Fechar;
-        private System.Windows.Forms.Button btn_Pesquisar;
     }
 }
