@@ -229,16 +229,6 @@ namespace HandsOnWorkBiblioteca
                 public List<Unit> ListUnit { get; set; }
             }
 
-            public static string SerializedClassUnit(Unit unit)
-            {
-                return JsonConvert.SerializeObject(unit);
-            }
-
-            //Método para transformar string em Json
-            public static Unit DesSerializedClassUnit(string vJson)
-            {
-                return JsonConvert.DeserializeObject<Unit>(vJson);
-            }
         }
     }
 }
